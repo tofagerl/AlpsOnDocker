@@ -9,8 +9,7 @@ VOLUME /work
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install git gcc gcc-avr avr-libc make moreutils -y
-RUN git clone https://github.com/kairyu/tmk_keyboard_custom.git /tmk
-RUN git clone https://github.com/kairyu/tmk_core_custom /tmk/tmk_core_custom
-COPY lib/* /tmk/keyboard/gh60/
-RUN chmod a+x /tmk/keyboard/gh60/make.sh
-RUN cd /tmk/keyboard/gh60 && patch < Makefile.patch Makefile && patch < config.h.patch config.h
+RUN git clone https://github.com/tmk/tmk_keyboard /tmk
+COPY lib/* /tmk/keyboard/alps64/
+RUN chmod a+x /tmk/keyboard/alps64/make.sh
+RUN cd /tmk/keyboard/alps64 && patch keymap_common.h keymap_common.h.patch
